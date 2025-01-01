@@ -9,13 +9,19 @@ function App() {
 let Increment = function() {
   //count = count + 1
   //setCounter(count); 
+  if(count <20) {
   setCounter(count + 1); 
+  }
 }
 
 let Decrement = function() {
   //count = count - 1
   //setCounter(count);
-   setCounter(count - 1); 
+  if(count > 0) {
+    setCounter(count - 1); 
+    
+  }
+   
   }
 
   return (
