@@ -7,7 +7,7 @@ function App() {
   return (
     <>
     <Card seasonName="first day of winter " btnName='enjoy'/>       
-    <Card seasonName={"best day of winter"} btnName=''/>      
+    <Card seasonName="best day of winter" btnName=''/>      
     </>
   )
 }
