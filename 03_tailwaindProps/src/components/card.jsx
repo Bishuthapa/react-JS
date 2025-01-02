@@ -1,4 +1,6 @@
 
+import PropTypes from 'prop-types';
+
 function Card({ seasonName, btnName }) {
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -16,6 +18,11 @@ function Card({ seasonName, btnName }) {
         </div>
       </div> 
     )
-}
+  }
+Card.propTypes = {
+  seasonName: PropTypes.string.isRequired,
+  btnName: PropTypes.string
+};
+
 
 export default Card;
