@@ -33,6 +33,14 @@ export class AuthService {
     async Login({email,password}) {
         return await this.account.createEmailSession(email,password);
     }
+
+    async getCurrentUser() {
+        return await this.account.get();
+    }
+
+    async Logout() {
+        return await this.account.deleteSession('current');
+    }
 }
 
 
