@@ -1,46 +1,38 @@
-import './App.css'
-import { useState, useEffect } from 'react'
+import  { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import authService from './appwrite/auth';
-import { login,logout } from './Store/authSlice';
-import { Header,Footer } from './Components';
+import './App.css'
+import authService from "./appWrite/auth"
+import {login, logout} from "./Store/authSlice"
+import { Footer, Header } from './Components'
+import { Outlet } from 'react-router-dom'
 
 function App() {
-  const [loding, setLoding] = useState(true);
-
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     authService.getCurrentUser()
     .then((userData) => {
-      if(userData)
-      {
+      if (userData) {
         dispatch(login({userData}))
-      }
-
-      else{
+      } else {
         dispatch(logout())
       }
     })
-    .finally(() =>{
-      setLoding(false)
-    } )
+    .finally(() => setLoading(false))
   }, [])
-
-
-
-  return !loding ? (
-  <div className='min-h-screen flex-wrap content-between bg-slate-600'>
-    <div className='w-full block'>
-      <Header />
-      <h1>Test</h1>
-      <main>
-        {/*<Outlet /> */}
-      </main>
-      <Footer/>
+  
+  return !loading ? (
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+      <div className='w-full block'>
+        <Header />
+        <main>
+        TODO:  <Outlet />
+        </main>
+        <Footer />
+      </div>
     </div>
-  </div>
-): null;
+  ) : null
 }
 
 export default App

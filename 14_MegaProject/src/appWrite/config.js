@@ -17,8 +17,8 @@ export class Service{
     async createPost({title, slug, content, featuredImage, status, userId}){
         try {
             return await this.databases.createDocument(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appWriteDatabaseId,
+                conf.appWriteCollectionId,
                 slug,
                 {
                     title,
@@ -36,8 +36,8 @@ export class Service{
     async updatePost(slug, {title, content, featuredImage, status}){
         try {
             return await this.databases.updateDocument(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appWriteDatabaseId,
+                conf.appWriteCollectionId,
                 slug,
                 {
                     title,
@@ -55,8 +55,8 @@ export class Service{
     async deletePost(slug){
         try {
             await this.databases.deleteDocument(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appWriteDatabaseId,
+                conf.appWriteCollectionId,
                 slug
             
             )
@@ -70,8 +70,8 @@ export class Service{
     async getPost(slug){
         try {
             return await this.databases.getDocument(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appWriteDatabaseId,
+                conf.appWriteCollectionId,
                 slug
             
             )
@@ -84,8 +84,8 @@ export class Service{
     async getPosts(queries = [Query.equal("status", "active")]){
         try {
             return await this.databases.listDocuments(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appWriteDatabaseId,
+                conf.appWriteCollectionId,
                 queries,
                 
 
@@ -101,7 +101,7 @@ export class Service{
     async uploadFile(file){
         try {
             return await this.bucket.createFile(
-                conf.appwriteBucketId,
+                conf.appWriteBucketId,
                 ID.unique(),
                 file
             )
@@ -114,7 +114,7 @@ export class Service{
     async deleteFile(fileId){
         try {
             await this.bucket.deleteFile(
-                conf.appwriteBucketId,
+                conf.appWriteBucketId,
                 fileId
             )
             return true
@@ -126,7 +126,7 @@ export class Service{
 
     getFilePreview(fileId){
         return this.bucket.getFilePreview(
-            conf.appwriteBucketId,
+            conf.appWriteBucketId,
             fileId
         )
     }
