@@ -5,7 +5,11 @@ import TodoForm from './components/TodoForm';
 import TodoItem from './components/TodoItem';
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  // Initialize state directly from localStorage
+  const [todos, setTodos] = useState(() => {
+    const storedTodos = localStorage.getItem('todos');
+    return storedTodos ? JSON.parse(storedTodos) : [];
+  });
 
   const addTodo = (todo) => {
     setTodos((prev) => [...prev, { id: Date.now(), ...todo }]);
@@ -29,16 +33,7 @@ function App() {
     );
   };
 
-  useEffect(() => {
-    const storedTodos = localStorage.getItem('todos');
-    if (storedTodos) {
-      const parsedTodos = JSON.parse(storedTodos);
-      if (parsedTodos.length > 0) {
-        setTodos(parsedTodos);
-      }
-    }
-  }, []);
-
+  // Save todos to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
