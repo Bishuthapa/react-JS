@@ -1,1 +1,1 @@
-## React projects 
+## Building project with ReactJS
